@@ -1,5 +1,9 @@
 # ng-count-up-js
 
+## refer
+```
+ng-countup is a rewritten version of https://github.com/inorganik/
+```
 ## Installation
 ```
 npm install ng-count-up-js
@@ -11,8 +15,8 @@ npm install ng-count-up-js
 
 #### app.module.ts
 ```
-import { NgEasingService } from 'ng-easing';
+import { CountUpModule } from 'ng-count-up-js';
 @NgModule({
-  providers: [NgEasingService]
+  imports: [CountUpModule]
 })
 ```

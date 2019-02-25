@@ -85,8 +85,6 @@ export class CountUpDirective implements OnChanges {
   }
 
   private animate() {
-      console.log('animate');
-      console.log(this.endVal);
     this.countUp.reset();
     if (this.endVal > 999) {
       this.countUp.start(() => this.countUp.update(this.endVal));
