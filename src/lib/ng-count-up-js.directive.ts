@@ -32,6 +32,15 @@ export class CountUpDirective implements OnChanges {
     // Optional number of decimal places. Default is 2.
     @Input() decimals: number;
 
+    // Optional string of grouping separator. Default is ','.
+    @Input() separator: string;
+
+    // Optional string of number prefix. Default is ''.
+    @Input() prefix: string;
+
+    // Optional string of number suffix. Default is ''.
+    @Input() suffix: string;
+
     // Optional flag for specifying whether the element should re-animate when clicked.
     // Default is true.
     @Input() reanimateOnClick: boolean;
@@ -60,6 +69,9 @@ export class CountUpDirective implements OnChanges {
         const start = this.startVal || 0;
         const duration = this.duration || 2;
         const decimals = this.decimals || 0;
+        const separator = this.separator || ',';
+        const prefix = this.prefix || '';
+        const suffix = this.suffix || '';
 
         if (!this.duration) {
             this.duration = duration;
@@ -68,7 +80,10 @@ export class CountUpDirective implements OnChanges {
         this.options = {
             start: start,
             duration: duration,
-            decimals: decimals
+            decimals: decimals,
+            separator: separator,
+            prefix: prefix,
+            suffix: suffix
         };
 
         // construct countUp
