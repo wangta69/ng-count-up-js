@@ -8,48 +8,50 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
-import { CountUp } from './countUp';
+import { CountUp } from './count-up';
 
 @Directive({
   selector: '[appCountUp]'
 })
 export class CountUpDirective implements OnChanges {
 
-    countUp: any;
-    options: any;
+    private countUp: any;
+    private options: any;
     // Optional extra configuration, such as easing.
     // @Input('countUp') options: any;
 
     // Optional start value for the count. Defaults to zero.
-    @Input() startVal: number;
+    @Input() private startVal: number;
 
     // the number to count to
-    @Input() endVal: number;
+    @Input() private endVal: number;
 
     // Optional duration of the animation in seconds. Default is 2.
-    @Input() duration: number;
+    @Input() private duration: number;
 
     // Optional number of decimal places. Default is 2.
-    @Input() decimals: number;
+    @Input() private decimals: number;
+
+    @Input() private useGrouping: boolean;
 
     // Optional flag for specifying whether the element should re-animate when clicked.
     // Default is true.
-    @Input() reanimateOnClick: boolean;
+    // @Input() private reanimateOnClick: boolean;
 
     // on-complete event emitter
-    @Output() complete = new EventEmitter<void>();
+    @Output() private complete = new EventEmitter<void>();
 
     // Re-animate if preference is set.
-    @HostListener('click')
-    onClick() {
-        if (this.reanimateOnClick) {
-            this.animate();
-        }
-    }
+    // @HostListener('click')
+    // private onClick(): void {
+    //     if (this.reanimateOnClick) {
+    //         this.animate();
+    //     }
+    // }
 
     constructor(private el: ElementRef) {}
 
-    ngOnChanges(changes: SimpleChanges) {
+    public ngOnChanges(changes: SimpleChanges): void {
         if (changes.endVal && typeof changes.endVal.currentValue !== 'undefined') {
             this.countUp = this.createCountUp();
             this.animate();
@@ -60,15 +62,18 @@ export class CountUpDirective implements OnChanges {
         const start = this.startVal || 0;
         const duration = this.duration || 2;
         const decimals = this.decimals || 0;
+        console.log(this.useGrouping);
+        const useGrouping = typeof this.useGrouping === 'undefined' ? true : this.useGrouping; // 3,000 (true) vs 3000 (false)
 
         if (!this.duration) {
             this.duration = duration;
         }
 
         this.options = {
-            start: start,
-            duration: duration,
-            decimals: decimals
+            start,
+            duration,
+            decimals,
+            useGrouping
         };
 
         // construct countUp
@@ -84,11 +89,11 @@ export class CountUpDirective implements OnChanges {
         return countUp;
     }
 
-    private animate() {
+    private animate(): void {
         this.countUp.reset();
-            this.countUp.start(() => this.countUp.update(this.endVal));
-            setTimeout(() => {
-                this.complete.emit();
-            }, this.duration * 1000);
+        this.countUp.start(() => this.countUp.update(this.endVal));
+        setTimeout(() => {
+            this.complete.emit();
+        }, this.duration * 1000);
     }
 }
