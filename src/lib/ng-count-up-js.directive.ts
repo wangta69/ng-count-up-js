@@ -62,7 +62,6 @@ export class CountUpDirective implements OnChanges {
         const start = this.startVal || 0;
         const duration = this.duration || 2;
         const decimals = this.decimals || 0;
-        console.log(this.useGrouping);
         const useGrouping = typeof this.useGrouping === 'undefined' ? true : this.useGrouping; // 3,000 (true) vs 3000 (false)
 
         if (!this.duration) {
