@@ -24,10 +24,10 @@ export class CountUpDirective implements OnChanges {
     @Input() private startVal: number;
 
     // the number to count to
-    @Input() private endVal: number;
+    @Input() public endVal: number;
 
     // Optional duration of the animation in seconds. Default is 2.
-    @Input() private duration: number;
+    @Input() public duration: number;
 
     // Optional number of decimal places. Default is 2.
     @Input() private decimals: number;
