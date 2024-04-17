@@ -4,26 +4,42 @@
 ```
 ng-countup is a rewritten version of https://github.com/inorganik/
 ```
-## Installation
+## Install
 ```
 npm i ng-count-up-js
 ```
 
-## How to use
-```
-<span (click)="amount=3000"><span appCountUp [endVal]="amount" [duration]='0.1' [useGrouping]="true"></span> click</span>
-
- [endVal]="display number"
- [duration]='0.1'
- [useGrouping]="true"  default: true, false: 3000, true: 3,000
- ```
-### imports
-```
-```
-#### app.module.ts
+## app.module.ts
 ```
 import { CountUpModule } from 'ng-count-up-js';
+..........
 @NgModule({
-  imports: [CountUpModule]
+..........
+  imports: [
+    CountUpModule,
+    ..........
+  ]
 })
 ```
+
+## component.html
+```
+<div appCountUp [startVal]="startVal" [endVal]="endVal" [duration]='2'></div>
+<button (click)="startVal=endVal; endVal=300000"> 300000</button>
+<button (click)="startVal=endVal; endVal=400000"> 400000</button>
+<button (click)="startVal=endVal; endVal=500000"> 500000</button>
+<button (click)="startVal=endVal; endVal=0"> 0</button>
+</div>
+
+```
+
+## Parameters
+### Input
+- endVal: the number to count to
+- duration: Optional duration of the animation in seconds. Default is 2.
+- startVal: (Number) Optional start value for the count. Defaults to zero.
+- decimals: Optional number of decimal places. Default is 2.
+
+### Output
+- complete
+

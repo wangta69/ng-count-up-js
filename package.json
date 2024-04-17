@@ -1,9 +1,10 @@
 {
   "name": "ng-count-up-js",
-  "version": "1.0.7",
+  "version": "1.1.1",
   "peerDependencies": {},
   "description": "CountUp.js for angular",
   "scripts": {
+    "postinstall": "ngcc",
     "test": "angular countUp.js"
   },
   "keywords": [
@@ -20,6 +21,9 @@
   "bugs": {
     "url": "https://github.com/wangta69/ng-count-up-js/issues"
   },
-  "homepage": "https://github.com/wangta69/ng-count-up-js#readme",
+  "homepage": "https://www.onstory.fun/npms/ng-count-up-js",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
   "main": "karma.conf.js"
 }

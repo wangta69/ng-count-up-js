@@ -4,3 +4,4 @@
 
 export * from './lib/ng-count-up-js.directive';
 export * from './lib/ng-count-up-js.module';
+
